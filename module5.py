@@ -3,7 +3,6 @@ Program: Input Validation Assignment
 Author: Nicholas Branch
 Course: CY5003
 Module: 5
-Date: February 5, 2026
 """
 
 def validate_input(weight, height, age):
