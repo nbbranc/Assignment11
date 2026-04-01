@@ -4,11 +4,6 @@ Author: Nicholas Branch
 Course: CY5003
 Module: 5
 Date: February 5, 2026
-Description: This program validates user input for weight (lbs), height (inches),
-and age (years) using three types of validation: type checking, range checking,
-and length checking. It demonstrates proper input validation techniques and
-uses static analysis tools for code quality. The result will print out
-sentence with the validate values.
 """
 
 def validate_input(weight, height, age):
