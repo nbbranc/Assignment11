@@ -77,21 +77,21 @@ def main():
 
     # WY: No early rejection at point of collection. Need a simple length/format check.
     # WY: Fail Fast. Dont Wasting resources.
-    # WY: Immidiately reprompt the user instead of passing invalid data. 
+    # WY: Immidiately reprompt the user instead of passing invalid data.
     # WY: Should show message of expectations and what is acceptable/unacceptable.
     # Prompt user to enter their weight in pounds
     weight = input("Enter weight in lbs: ")
 
     # WY: No early rejection at point of collection. Need a simple length/format check.
     # WY: Fail Fast. Dont Wasting resources.
-    # WY: Immidiately reprompt the user instead of passing invalid data. 
+    # WY: Immidiately reprompt the user instead of passing invalid data.
     # WY: Should show message of expectations and what is acceptable/unacceptable.
     # Prompt user to enter their height in inches
     height = input("Enter height in inches: ")
 
     # WY: No early rejection at point of collection. Need a simple length/format check.
     # WY: Fail Fast. Dont Wasting resources.
-    # WY: Immidiately reprompt the user instead of passing invalid data. 
+    # WY: Immidiately reprompt the user instead of passing invalid data.
     # WY: Should show message of expectations and what is acceptable/unacceptable.
     # Prompt user to enter their current age in years
     age = input("What is your current age in years: ")
