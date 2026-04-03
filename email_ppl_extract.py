@@ -20,6 +20,12 @@ def parse_institution(domain: str) -> str:
 
     # Take the first section before the top-level domain (e.g., bu.edu → bu)
     parts = domain.split('.')
+    '''
+    NB Comment 1: 
+    domain_parts[0] is not lowercased before the domain_map lookup, 
+    so uppercase domains like BU.EDU silently fall back to key.capitalize() 
+    instead of matching the correct institution.
+    '''
     if len(parts) >= 1:
         key = parts[0]
         return domain_map.get(key, key.capitalize())
@@ -46,12 +52,32 @@ def extract_emails_and_people(text: str) -> tuple:
                 username, domain = parts
 
                 # Add to all emails list
+                '''
+                NB Improvement:
+                all_emails should only append after all validation 
+                passes, so it only contains properly validated emails.
+                Maybe it emails should be added to the list towards 
+                the end when it has been validated
+                '''
                 all_emails.append(word)
 
                 # Check if username matches last.first pattern
                 username_parts = username.split('.')
                 domain_parts = domain.split('.')
+                '''
+                NB Comment 2:
+                No minimum or maximum length checking is enforced on the 
+                username parts. Very short or superlong strings would 
+                pass, since those bounds aren't checked
+                '''
+
                 if len(username_parts) == 2 and username_parts[0].isalpha() and username_parts[1].isalpha():
+                    '''
+                    NB Comment 3: 
+                    isalpha() rejects valid email characters like underscores
+                    and hyphens, causing valid emails to be silently 
+                    excluded from people.
+                    '''
                     last, first = username_parts
                     institution = parse_institution(domain_parts[0])
                     name = f"{first.capitalize()} {last.capitalize()}"
@@ -64,7 +90,8 @@ def extract_emails_and_people(text: str) -> tuple:
 
 def main():
     text = (
-    "Hello- World1,Contact doe.jane@bu.edu, Today_ is my birthday smith.john@mit.edu, brown.sara@company.org, loving it! "
+    "Hello- World1,Contact doe.jane@Bu.Edu, Today_ is my birthday "
+    "smith.john@mit.edu, brown.sara@company.org, loving it! "
     "support@gmail.com, admin@my-site.net, user123@yahoo.com"
     )
     emails, people = extract_emails_and_people(text)
